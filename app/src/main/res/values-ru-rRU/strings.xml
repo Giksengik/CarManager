@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CarManager</string>
+    <string name="username">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="email">Эл. почта</string>
+    <string name="login">Войти</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="authorisation">Авторизация</string>
+    <string name="registration">Регистрация</string>
+    <string name="username_helper_text">Логин должен содержать минимум 6 символов и не должен начинаться с цифры и содержать символы</string>
+    <string name="password_helper_text">Пароль должен быть не менее 8 символов и состоять из цифр и букв</string>
+    <string name="email_helper_text">Неверный адрес почты</string>
+    <string name="user_not_found_message">Пользователь не найден</string>
+    <string name="cancel">Закрыть</string>
+    <string name="network_error_message">Ошибки сети, попробуйте снова</string>
+    <string name="ok">OK</string>
+    <string name="wrong_input_message">Неверный ввод. Может быть вы уже регистрировали аккаунт</string>
+    <string name="username_already_exist">Данный логин занят</string>
+    <string name="email_occupied">Данная почта занята</string>
+</resources>

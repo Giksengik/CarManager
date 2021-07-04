@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">CarManager</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="login">Log in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="authorisation">Authorisation</string>
+    <string name="registration">Registration</string>
+    <string name="username_helper_text">Login must be at least 6 characters and not start with a number and contain symbols</string>
+    <string name="password_helper_text">Password must be at least 8 characters long and consist of numbers and letters</string>
+    <string name="email_helper_text">Incorrect email</string>
+    <string name="user_not_found_message">User is not found</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="network_error_message">Network error, please try again</string>
+    <string name="wrong_input_message">Wrong input! Maybe you have already registered an account</string>
+    <string name="username_already_exist">Username already exists</string>
+    <string name="email_occupied">This email occupied</string>
+</resources>
