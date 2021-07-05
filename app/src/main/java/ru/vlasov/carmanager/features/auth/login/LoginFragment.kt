@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import ru.vlasov.carmanager.NetworkUser
 import ru.vlasov.carmanager.R
@@ -20,13 +21,14 @@ class LoginFragment : Fragment(){
 
     private var binding : FragmentLoginBinding? = null
     private val viewModel by viewModels<LoginViewModelImpl>()
-
+    val args : LoginFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLoginBinding.inflate(LayoutInflater.from(context))
+        binding?.usernameLoginField?.setText(args.login)
         binding?.buttonToSignUp?.setOnClickListener{
             val action = LoginFragmentDirections.actionLoginFragmentToSignUpFragment2()
             activity?.let{
@@ -70,6 +72,7 @@ class LoginFragment : Fragment(){
 
                 is AuthState.SuccessLogin -> {
                     unlockInput()
+                    navigateToMainFragment()
                 }
 
                 is AuthState.Loading -> {
@@ -96,6 +99,12 @@ class LoginFragment : Fragment(){
             }
         }
 
+    }
+    private fun navigateToMainFragment(){
+        val action = LoginFragmentDirections.actionLoginFragmentToMainFragment()
+        activity?.let{
+            (it as NavigationProvider).navigateByAction(action)
+        }
     }
 
     private fun showPasswordHelper() {

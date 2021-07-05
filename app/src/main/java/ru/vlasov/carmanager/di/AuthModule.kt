@@ -5,8 +5,8 @@ import dagger.Module
 import dagger.hilt.InstallIn
 
 import dagger.hilt.components.SingletonComponent
-import ru.vlasov.carmanager.repostories.AuthRepository
-import ru.vlasov.carmanager.repostories.AuthRepositoryImpl
+import ru.vlasov.carmanager.repositories.AuthRepository
+import ru.vlasov.carmanager.repositories.AuthRepositoryImpl
 import javax.inject.Singleton
 
 @Module

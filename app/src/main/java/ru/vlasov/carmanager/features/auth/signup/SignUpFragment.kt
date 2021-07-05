@@ -70,6 +70,7 @@ class SignUpFragment : Fragment() {
 
                 is AuthState.SuccessSignUp -> {
                     unlockInput()
+                    navigateToLoginWithArg(binding?.usernameSignUpField?.text?.toString())
                 }
 
                 is AuthState.Loading -> {
@@ -103,6 +104,13 @@ class SignUpFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun navigateToLoginWithArg(login : String?) {
+        val action = SignUpFragmentDirections.actionSignUpFragmentToLoginFragment(login ?: "")
+        activity?.let{
+            (it as NavigationProvider).navigateByAction(action)
+        }
     }
 
     private fun showWrongInputDialog() {

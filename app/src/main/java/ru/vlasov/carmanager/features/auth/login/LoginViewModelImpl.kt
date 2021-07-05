@@ -8,7 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.vlasov.carmanager.features.auth.AuthState
-import ru.vlasov.carmanager.repostories.AuthRepository
+import ru.vlasov.carmanager.repositories.AuthRepository
 import ru.vlasov.carmanager.utils.InputDataValidator
 import javax.inject.Inject
 

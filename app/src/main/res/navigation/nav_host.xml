@@ -10,6 +10,13 @@
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment2"
             app:destination="@id/signUpFragment" />
+        <argument
+            android:name="login"
+            app:argType="string"
+            android:defaultValue='' />
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -19,4 +26,8 @@
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="ru.vlasov.carmanager.features.bottom_nav.MainFragment"
+        android:label="MainFragment" />
 </navigation>

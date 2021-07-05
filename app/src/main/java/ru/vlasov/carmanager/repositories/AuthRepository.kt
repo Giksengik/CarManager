@@ -1,7 +1,6 @@
-package ru.vlasov.carmanager.repostories
+package ru.vlasov.carmanager.repositories
 
 import ru.vlasov.carmanager.features.auth.AuthState
-import ru.vlasov.carmanager.network.json.response.MessageResponse
 
 
 interface AuthRepository {

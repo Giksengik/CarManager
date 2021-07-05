@@ -1,19 +1,29 @@
-package ru.vlasov.carmanager.repostories
+package ru.vlasov.carmanager.repositories
 
+import android.preference.PreferenceManager.getDefaultSharedPreferences
 import retrofit2.HttpException
+import ru.vlasov.carmanager.data.UserDataHolder
 import ru.vlasov.carmanager.features.auth.AuthState
 import ru.vlasov.carmanager.network.RemoteDataSource
 import ru.vlasov.carmanager.network.json.request.LoginEntity
 import ru.vlasov.carmanager.network.json.request.SignUpEntity
 import java.io.IOException
+import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor
-    (val remoteDataSource: RemoteDataSource) : AuthRepository {
+    (val remoteDataSource: RemoteDataSource, val userDataHolder: UserDataHolder) : AuthRepository {
 
     override suspend fun login(username: String, password: String): AuthState {
         return try {
             val res = remoteDataSource.login(LoginEntity(username, password))
+            userDataHolder.dataHolder.edit().apply{
+                putLong(UserDataHolder.ID_KEY, res.id ?: throw IllegalArgumentException("id not found"))
+                putString(UserDataHolder.TOKEN_KEY, res.token ?: throw IllegalArgumentException("token not found"))
+                putString(UserDataHolder.EMAIL_KEY, res.email ?: throw IllegalArgumentException("email not found"))
+                putString(UserDataHolder.TYPE_KEY, res.type ?: throw IllegalArgumentException("token type not found"))
+                putString(UserDataHolder.USERNAME_KEY, res.username ?: throw IllegalArgumentException("username not found"))
+            }
             AuthState.SuccessLogin(res)
         } catch(e : Exception) {
             when(e){

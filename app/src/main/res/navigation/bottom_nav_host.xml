@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/bottom_nav_host">
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/bottom_nav_host"
+    app:startDestination="@id/fragmentHome">
 
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="ru.vlasov.carmanager.features.bottom_nav.FragmentHome"
+        android:label="FragmentHome" />
 </navigation>
