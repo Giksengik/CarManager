@@ -4,8 +4,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ru.vlasov.carmanager.network.RemoteDataSource
-import ru.vlasov.carmanager.network.json.DataSource
+import ru.vlasov.carmanager.network.json.auth.RemoteAuthDataSource
+import ru.vlasov.carmanager.network.json.auth.AuthDataSource
+import ru.vlasov.carmanager.network.json.main.MainRemoteDataSource
+import ru.vlasov.carmanager.network.json.main.RemoteDataSource
 import javax.inject.Singleton
 
 @Module
@@ -14,6 +16,9 @@ abstract class RemoteDataSourceModule {
 
     @Binds
     @Singleton
-    abstract fun bindRemoteDataSource(dataSource : DataSource) : RemoteDataSource
+    abstract fun bindRemoteAuthDataSource(dataSource : AuthDataSource) : RemoteAuthDataSource
 
+    @Binds
+    @Singleton
+    abstract fun bindRemoteDataSource(dataSource: MainRemoteDataSource) : RemoteDataSource
 }

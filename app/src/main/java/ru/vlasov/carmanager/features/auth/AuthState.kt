@@ -1,7 +1,7 @@
 package ru.vlasov.carmanager.features.auth
 
-import ru.vlasov.carmanager.network.json.response.LoginResponse
-import ru.vlasov.carmanager.network.json.response.MessageResponse
+import ru.vlasov.carmanager.network.json.auth.response.LoginResponse
+import ru.vlasov.carmanager.network.json.auth.response.MessageResponse
 
 sealed class AuthState{
 

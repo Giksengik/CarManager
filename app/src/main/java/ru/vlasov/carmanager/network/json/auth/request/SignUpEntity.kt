@@ -1,4 +1,4 @@
-package ru.vlasov.carmanager.network.json.request
+package ru.vlasov.carmanager.network.json.auth.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
