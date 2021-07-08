@@ -5,9 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import ru.vlasov.carmanager.databinding.FragmentMainBinding
+import androidx.navigation.NavDirections
 
-class MainFragment : Fragment() {
+import androidx.navigation.fragment.findNavController
+import ru.vlasov.carmanager.databinding.FragmentMainBinding
+import ru.vlasov.carmanager.features.NavigationProvider
+
+class MainFragment : Fragment() , NavigationProvider, BottomNavigationHolder {
 
     var binding : FragmentMainBinding? = null
 
@@ -19,5 +23,22 @@ class MainFragment : Fragment() {
         binding = FragmentMainBinding.inflate(inflater)
 
         return binding?.root
+    }
+
+    override fun navigateByAction(action: NavDirections) {
+        findNavController().navigate(action)
+    }
+
+    override fun hideBottomNav(){
+        binding?.bttmNav?.visibility = View.GONE
+    }
+
+    override fun showBottomNav(){
+        binding?.bttmNav?.visibility = View.VISIBLE
+    }
+
+    override fun onDestroy() {
+        binding = null
+        super.onDestroy()
     }
 }

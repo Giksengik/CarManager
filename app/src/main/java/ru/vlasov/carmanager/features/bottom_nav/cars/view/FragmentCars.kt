@@ -7,10 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ru.vlasov.carmanager.R
 import ru.vlasov.carmanager.databinding.FragmentCarsBinding
+import ru.vlasov.carmanager.features.CurrentFragmentHolder
+
+import ru.vlasov.carmanager.features.NavigationProvider
+import ru.vlasov.carmanager.features.bottom_nav.BottomNavigationHolder
 import ru.vlasov.carmanager.features.bottom_nav.cars.viewmodel.CarDataRepresentationState
 import ru.vlasov.carmanager.features.bottom_nav.cars.viewmodel.CarsViewModelImpl
 
@@ -20,6 +25,7 @@ class FragmentCars : Fragment() {
     var binding : FragmentCarsBinding? = null
     private val viewModel : CarsViewModelImpl by viewModels()
     private var listAdapter : CarListAdapter? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,6 +38,10 @@ class FragmentCars : Fragment() {
             adapter = listAdapter
         }
 
+        binding?.buttonAddCar?.setOnClickListener{
+            navigateToAddCarFragment()
+        }
+
         viewModel.userCars.observe(viewLifecycleOwner){
             handleState(it)
         }
@@ -39,6 +49,25 @@ class FragmentCars : Fragment() {
         viewModel.getUserCars()
 
         return binding?.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        configureParent()
+    }
+
+    private fun configureParent(){
+        activity?.let{ activity ->
+            (activity as CurrentFragmentHolder).getCurrentFragment()?.let{
+                fragment -> (fragment as BottomNavigationHolder).showBottomNav()
+            }
+        }
+    }
+
+
+    private fun navigateToAddCarFragment() {
+        val action = FragmentCarsDirections.actionFragmentHomeToFragmentNewCar()
+        findNavController().navigate(action)
     }
 
     private fun handleState(state: CarDataRepresentationState?) {

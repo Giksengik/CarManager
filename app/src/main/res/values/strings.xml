@@ -19,4 +19,67 @@
     <string name="email_occupied">This email occupied</string>
     <string name="user_data_shared_pref" translatable="false">userDataSharedPref</string>
     <string name="user_loading_error">User error! Try to re-enter the app</string>
+    <string name="name">Name</string>
+    <string name="year_of_issue">Year of issue</string>
+    <string name="mileage_in_km">Mileage (in kms)</string>
+    <string name="automobile_type_body">Type of automobile body</string>
+    <string name="select_type_of_automobile_body">Select type of Automobile body</string>
+    <string name="color">Color</string>
+    <string name="engine">Engine</string>
+    <string name="tax_per_year"> Tax per year</string>
+    <string name="transmission_type"> Type of transmission</string>
+    <string name="select_transmission_type">Select type of transmission</string>
+    <string name="typeOfDriveUnit">Type of driver unit</string>
+    <string name="select_driver_unit_type">Select type of driver unit</string>
+    <string name="steering_wheel_location"> Location of steering wheel</string>
+    <string name="select_wheel_location">Select location of steering wheel</string>
+    <string name="VIN" translatable="false"> VIN </string>
+    <string name="stateNumber">State number</string>
+    <string name="description">Description</string>
+    <string name ="cylinder_volume_in_litres">Cylinder volume in litres</string>
+    <string name ="engine_power">Engine power</string>
+    <string name ="engine_type">Type of engine</string>
+    <string name="select_engine_type">Select type of engine</string>
+
+    <!--Automobile body-->
+    <string-array name="typesOfAutomobileBody">
+        <item>Sedan</item>
+        <item>Wagon</item>
+        <item>SUV</item>>
+        <item>Hatchback</item>
+        <item>Cabriolet</item>
+        <item>Sport</item>
+        <item>Pickup</item>
+        <item>4WD</item>
+        <item>Mini Truck</item>
+        <item>Micro</item>
+        <item>Van</item>
+        <item>Campervan</item>
+        <item>Other</item>
+    </string-array>
+
+    <!--Transmission-->
+    <string-array name="typesOfTransmission">
+        <item>Mechanical</item>
+        <item>Automatic</item>
+        <item>Robotic</item>>
+        <item>Variable</item>
+        <item>Other</item>
+    </string-array>
+
+    <!--Wheel location-->
+    <string-array name="wheelLocations">
+        <item>Right</item>
+        <item>Left</item>
+        <item>Other</item>
+    </string-array>
+
+    <!--Engine type-->
+    <string-array name="typesOfEngine">
+        <item>Internal Combustion</item>
+        <item>Steam</item>
+        <item>Electra</item>
+        <item>Other</item>
+    </string-array>
+
 </resources>

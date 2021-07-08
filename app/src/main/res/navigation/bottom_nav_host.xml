@@ -6,5 +6,17 @@
     <fragment
         android:id="@+id/fragmentHome"
         android:name="ru.vlasov.carmanager.features.bottom_nav.cars.view.FragmentCars"
-        android:label="FragmentHome" />
+        android:label="FragmentHome" >
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentNewCar"
+            app:destination="@id/fragmentNewCar" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentNewCar"
+        android:name="ru.vlasov.carmanager.features.bottom_nav.cars.view.FragmentNewCar"
+        android:label="FragmentNewCar" >
+        <action
+            android:id="@+id/action_fragmentNewCar_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+    </fragment>
 </navigation>

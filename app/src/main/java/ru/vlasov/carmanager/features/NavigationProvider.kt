@@ -4,4 +4,5 @@ import androidx.navigation.NavDirections
 
 interface NavigationProvider {
     fun navigateByAction(action : NavDirections)
+
 }

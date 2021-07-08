@@ -19,4 +19,65 @@
     <string name="username_already_exist">Данный логин занят</string>
     <string name="email_occupied">Данная почта занята</string>
     <string name="user_loading_error">Пользовательская ошибка! Попробуйте перезайти в приложение</string>
+    <string name="name">Название</string>
+    <string name="year_of_issue">Год выпуска</string>
+    <string name="mileage_in_km">Пробег ( в км)</string>
+    <string name="automobile_type_body">Тип кузова</string>
+    <string name="select_type_of_automobile_body">Выберите тип кузова</string>
+    <string name="color">Цвет автомобиля</string>
+    <string name="engine">Двигатель</string>
+    <string name="tax_per_year"> Налог в год</string>
+    <string name="transmission_type"> Тип коробки передач</string>
+    <string name="select_transmission_type">Выберите тип коробки передач</string>
+    <string name="typeOfDriveUnit">Тип привода</string>
+    <string name="select_driver_unit_type">Выберите тип привода</string>
+    <string name="steering_wheel_location"> Расположение руля</string>
+    <string name="select_wheel_location">Выберите расположение руля</string>
+    <string name="stateNumber">Гос. номера</string>
+    <string name="description">Описание </string>
+    <string name ="cylinder_volume_in_litres">Объем цилиндра двигателя в литрах</string>
+    <string name ="engine_power">Мощность двигателя</string>
+    <string name ="engine_type">Тип двигателя</string>
+    <string name="select_engine_type">Выберите тип двигателя</string>
+
+    <!--Кузов-->
+    <string-array name="typesOfAutomobileBody">
+        <item>Седан</item>
+        <item>Универсал</item>
+        <item>Кроссовер</item>>
+        <item>Хэтчбэк</item>
+        <item>Кабриолет</item>
+        <item>Спорт</item>
+        <item>Пикап</item>
+        <item>Внедорожник</item>
+        <item>Мини Грузовик</item>
+        <item>Микро</item>
+        <item>Ван</item>
+        <item>Автофургон</item>
+        <item>Другое</item>
+    </string-array>
+
+    <!--Коробка передач-->
+    <string-array name="typesOfTransmission">
+        <item>Механическая</item>
+        <item>Автоматическая</item>
+        <item>Роботизированная</item>>
+        <item>Вариативная</item>
+        <item>Другое</item>
+    </string-array>
+
+    <!--Расположение руля-->
+    <string-array name="wheelLocations">
+        <item>Правый</item>
+        <item>Левый</item>
+        <item>Другое</item>
+    </string-array>
+
+    <!--Тип двигателя-->
+    <string-array name="typesOfEngine">
+        <item>Внутреннего сгорания</item>
+        <item>Паровой</item>
+        <item>Электро</item>
+        <item>Другое</item>
+    </string-array>
 </resources>
