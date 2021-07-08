@@ -82,4 +82,11 @@
         <item>Other</item>
     </string-array>
 
+    <!--Drive unit type-->
+    <string-array name="typesOfDriveUnit">
+        <item>Front</item>
+        <item>Rear</item>
+        <item>Full</item>
+        <item>Other</item>
+    </string-array>
 </resources>

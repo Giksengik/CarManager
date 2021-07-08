@@ -80,4 +80,13 @@
         <item>Электро</item>
         <item>Другое</item>
     </string-array>
+
+    <!--Тип привода-->
+    <string-array name="typesOfDriveUnit">
+        <item>Передний</item>
+        <item>Задний</item>
+        <item>Полный</item>
+        <item>Другое</item>
+    </string-array>
+
 </resources>
