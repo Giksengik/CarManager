@@ -5,6 +5,6 @@
 
     <fragment
         android:id="@+id/fragmentHome"
-        android:name="ru.vlasov.carmanager.features.bottom_nav.cars.FragmentCars"
+        android:name="ru.vlasov.carmanager.features.bottom_nav.cars.view.FragmentCars"
         android:label="FragmentHome" />
 </navigation>

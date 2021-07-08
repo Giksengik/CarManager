@@ -18,4 +18,5 @@
     <string name="username_already_exist">Username already exists</string>
     <string name="email_occupied">This email occupied</string>
     <string name="user_data_shared_pref" translatable="false">userDataSharedPref</string>
+    <string name="user_loading_error">User error! Try to re-enter the app</string>
 </resources>

@@ -1,4 +1,4 @@
-package ru.vlasov.carmanager.features.bottom_nav.cars
+package ru.vlasov.carmanager.features.bottom_nav.cars.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,13 +13,14 @@ import ru.vlasov.carmanager.repositories.CarRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class CarsViewModelImpl @Inject constructor(val carRepository: CarRepository) : ViewModel() {
+class CarsViewModelImpl @Inject constructor(private val carRepository: CarRepository) : ViewModel() {
 
-    private val mutableUserCars : MutableLiveData<List<Car>> = MutableLiveData()
-    val userCars : LiveData<List<Car>>
+    private val mutableUserCars : MutableLiveData<CarDataRepresentationState> = MutableLiveData()
+    val userCars : LiveData<CarDataRepresentationState>
     get() = mutableUserCars
 
     fun getUserCars(){
+        mutableUserCars.value = CarDataRepresentationState.Loading
         viewModelScope.launch(Dispatchers.Default){
             mutableUserCars.postValue(carRepository.getUserCars())
         }

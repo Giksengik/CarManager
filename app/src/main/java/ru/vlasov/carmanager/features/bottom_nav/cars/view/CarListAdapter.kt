@@ -1,4 +1,4 @@
-package ru.vlasov.carmanager.features.bottom_nav.cars
+package ru.vlasov.carmanager.features.bottom_nav.cars.view
 
 import android.view.LayoutInflater
 import android.view.View

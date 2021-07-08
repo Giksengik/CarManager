@@ -18,4 +18,5 @@
     <string name="wrong_input_message">Неверный ввод. Может быть вы уже регистрировали аккаунт</string>
     <string name="username_already_exist">Данный логин занят</string>
     <string name="email_occupied">Данная почта занята</string>
+    <string name="user_loading_error">Пользовательская ошибка! Попробуйте перезайти в приложение</string>
 </resources>
