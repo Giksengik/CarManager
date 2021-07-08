@@ -1,3 +1,3 @@
 package ru.vlasov.carmanager.models
 
-class CarEngine (var cylinderVolumeInLitres : Int, var enginePower : Int, var type: String)
+class CarEngine (var cylinderVolumeInLitres : Double, var enginePower : Double, var type: String)

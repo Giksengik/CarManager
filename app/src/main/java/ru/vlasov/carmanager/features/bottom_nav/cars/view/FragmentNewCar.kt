@@ -44,15 +44,15 @@ class FragmentNewCar : Fragment() {
         viewModel.addNewCar(Car(
                 name = binding?.newCarNameField?.text.toString(),
                 yearOfIssue = binding?.newCarYearOfIssueField?.text.toString(),
-                mileageInKm = Integer.parseInt(binding?.newCarMileageInKmField?.text.toString()),
+                mileageInKm = (binding?.newCarMileageInKmField?.text.toString()).toDouble(),
                 automobileBody = automobileBodyListAdapter?.getCheckedItem() ?: "",
                 color = binding?.newCarColorField?.text.toString(),
                 engine = CarEngine(
-                        cylinderVolumeInLitres = Integer.parseInt(binding?.newCarCylinderVolumeInLitresField?.text.toString()),
-                        enginePower = Integer.parseInt(binding?.newCarEnginePowerField?.text.toString()),
+                        cylinderVolumeInLitres = (binding?.newCarCylinderVolumeInLitresField?.text.toString()).toDouble(),
+                        enginePower = (binding?.newCarEnginePowerField?.text.toString()).toDouble(),
                         type = engineTypesListAdapter?.getCheckedItem() ?: ""
                 ),
-                taxPerYear = Integer.parseInt(binding?.newCarTaxPerYearField?.text.toString()),
+                taxPerYear = (binding?.newCarTaxPerYearField?.text.toString()).toDouble(),
                 transmissionType = typesOfTransmissionListAdapter?.getCheckedItem() ?: "",
                 typeOfDriveUnit = driveUnitTypesListAdapter?.getCheckedItem() ?: "",
                 steeringWheelLocation = wheelLocationsListAdapter?.getCheckedItem() ?: "",
