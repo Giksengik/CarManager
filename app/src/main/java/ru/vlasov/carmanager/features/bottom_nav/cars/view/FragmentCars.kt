@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import ru.vlasov.carmanager.NetworkUser
 import ru.vlasov.carmanager.R
 import ru.vlasov.carmanager.databinding.FragmentCarsBinding
 import ru.vlasov.carmanager.features.CurrentFragmentHolder
@@ -117,22 +118,15 @@ class FragmentCars : Fragment() {
     }
 
     private fun showUserErrorDialog() {
-        AlertDialog.Builder(context)
-                .setMessage(R.string.user_loading_error)
-                .setPositiveButton(R.string.ok){
-                    dialog, _ -> dialog.dismiss()
-                }
-                .show()
-
+        activity?.let{
+            (it as NetworkUser).showUserErrorDialog()
+        }
     }
 
     private fun showNetworkErrorDialog() {
-        AlertDialog.Builder(context)
-                .setMessage(R.string.network_error_message)
-                .setPositiveButton(R.string.cancel){
-                    dialog, _ -> dialog.dismiss()
-                }
-                .show()
+        activity?.let{
+            (it as NetworkUser).showNetworkErrorDialog()
+        }
     }
 
     private fun setLoading() {

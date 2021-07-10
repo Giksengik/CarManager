@@ -1,31 +1,32 @@
 package ru.vlasov.carmanager.features.bottom_nav.cars.view
 
-import android.content.res.Resources
-import android.graphics.drawable.GradientDrawable
-import android.icu.number.IntegerWidth
+
+import android.animation.Animator
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import ru.vlasov.carmanager.NetworkUser
 import ru.vlasov.carmanager.R
 import ru.vlasov.carmanager.databinding.FragmentNewCarBinding
 import ru.vlasov.carmanager.features.CurrentFragmentHolder
-import ru.vlasov.carmanager.features.NavigationProvider
 import ru.vlasov.carmanager.features.bottom_nav.BottomNavigationHolder
 import ru.vlasov.carmanager.features.bottom_nav.ToolbarProvider
+import ru.vlasov.carmanager.features.bottom_nav.cars.viewmodel.CarCreatingState
 import ru.vlasov.carmanager.features.bottom_nav.cars.viewmodel.NewCarViewModelImpl
 import ru.vlasov.carmanager.models.Car
 import ru.vlasov.carmanager.models.CarEngine
-import ru.vlasov.carmanager.network.json.main.request.CarRequest
 import ru.vlasov.carmanager.utils.StringToDoubleConverter
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FragmentNewCar : Fragment() {
@@ -42,7 +43,116 @@ class FragmentNewCar : Fragment() {
         binding = FragmentNewCarBinding.inflate(inflater)
         configureToolbar()
         defineLists()
+        viewModel.viewState.observe(viewLifecycleOwner){
+            handleState(it)
+        }
         return binding?.root
+    }
+
+    private fun handleState(state: CarCreatingState?) =
+            when(state){
+              is CarCreatingState.Loading -> setLoading()
+                is CarCreatingState.Success -> onSuccess()
+                is CarCreatingState.Error.RequestError -> onRequestError()
+                is CarCreatingState.Error.NetworkError -> onNetworkError()
+                else -> onUnexpectedState()
+            }
+
+    private fun onUnexpectedState(){
+        setLoaded()
+    }
+
+    private fun onNetworkError(){
+        setLoaded()
+        activity?.let{
+            (it as NetworkUser).showNetworkErrorDialog()
+        }
+    }
+
+    private fun onRequestError(){
+        setLoaded()
+        activity?.let{
+            (it as NetworkUser).showUserErrorDialog()
+        }
+    }
+
+    private fun onSuccess(){
+        binding?.carCreatingProgressBar?.visibility = View.GONE
+        binding?.successCarCreatingAnim?.visibility = View.VISIBLE
+        lifecycleScope.launch{
+            binding?.successCarCreatingAnim?.addAnimatorListener(object : Animator.AnimatorListener{
+                override fun onAnimationStart(animation: Animator?) {}
+                override fun onAnimationEnd(animation: Animator?) {
+                    navigateToCarsList()
+                    setLoaded()
+                }
+                override fun onAnimationCancel(animation: Animator?) {}
+                override fun onAnimationRepeat(animation: Animator?) {}
+            })
+            binding?.successCarCreatingAnim?.playAnimation()
+        }
+
+
+    }
+
+    private fun setLoading(){
+        binding?.carCreatingProgressBar?.visibility = View.VISIBLE
+        binding?.newCarColorField?.isEnabled = false
+        binding?.newCarCylinderVolumeInLitresField?.isEnabled = false
+        binding?.newCarDescriptionField?.isEnabled = false
+        binding?.newCarEnginePowerField?.isEnabled = false
+        binding?.newCarMileageInKmField?.isEnabled = false
+        binding?.newCarNameField?.isEnabled = false
+        binding?.newCarTaxPerYearField?.isEnabled = false
+        binding?.newCarVINField?.isEnabled = false
+        binding?.newCarYearOfIssueField?.isEnabled = false
+        binding?.newStateNumberField?.isEnabled = false
+        binding?.driverUnitTypesList?.isEnabled = false
+        binding?.engineTypeList?.isEnabled = false
+        binding?.wheelLocationList?.isEnabled = false
+        binding?.driverUnitTypesList?.isEnabled = false
+        binding?.typeOfTransmissionList?.isEnabled = false
+        binding?.typeOfAutomobileBodyList?.isEnabled = false
+        lockToolbar()
+    }
+
+    private fun lockToolbar() {
+        activity?.let { activity ->
+            (activity as CurrentFragmentHolder).getCurrentFragment()?.let { fragment ->
+                val toolbar = (fragment as ToolbarProvider).getToolbar()
+                toolbar.findViewById<View>(R.id.confirm).isEnabled = false
+            }
+        }
+    }
+
+    private fun unlockToolbar() {
+        activity?.let { activity ->
+            (activity as CurrentFragmentHolder).getCurrentFragment()?.let { fragment ->
+                val toolbar = (fragment as ToolbarProvider).getToolbar()
+                toolbar.findViewById<View>(R.id.confirm).isEnabled = true
+            }
+        }
+    }
+
+    private fun setLoaded() {
+        binding?.carCreatingProgressBar?.visibility = View.GONE
+        binding?.newCarColorField?.isEnabled = true
+        binding?.newCarCylinderVolumeInLitresField?.isEnabled = true
+        binding?.newCarDescriptionField?.isEnabled = true
+        binding?.newCarEnginePowerField?.isEnabled = true
+        binding?.newCarMileageInKmField?.isEnabled = true
+        binding?.newCarNameField?.isEnabled = true
+        binding?.newCarTaxPerYearField?.isEnabled = true
+        binding?.newCarVINField?.isEnabled = true
+        binding?.newCarYearOfIssueField?.isEnabled = true
+        binding?.newStateNumberField?.isEnabled = true
+        binding?.driverUnitTypesList?.isEnabled = true
+        binding?.engineTypeList?.isEnabled = true
+        binding?.wheelLocationList?.isEnabled = true
+        binding?.driverUnitTypesList?.isEnabled = true
+        binding?.typeOfTransmissionList?.isEnabled = true
+        binding?.typeOfAutomobileBodyList?.isEnabled = true
+        unlockToolbar()
     }
 
     private fun configureToolbar() {
@@ -98,7 +208,7 @@ class FragmentNewCar : Fragment() {
     }
 
     private fun showEnginePowerInputError() {
-        binding?.newCarMileageInKmBlock?.helperText = getString(R.string.wrong_input)
+        binding?.newCarEnginePowerBlock?.helperText = getString(R.string.wrong_input)
     }
 
     private fun showTaxInputError() {
@@ -110,15 +220,14 @@ class FragmentNewCar : Fragment() {
     }
 
     private fun showCarMileageInputError() {
+        binding?.newCarMileageInKmBlock?.helperText = getString(R.string.wrong_input)
+    }
+
+    private fun clearHelpers(){
         binding?.newCarEnginePowerBlock?.helperText = ""
         binding?.newCarCylinderVolumeInLitresBlock?.helperText = ""
         binding?.newCarTaxPerYearBlock?.helperText = ""
         binding?.newCarTaxPerYearBlock?.helperText = ""
-
-    }
-
-    private fun clearHelpers(){
-        binding?.newCarMileageInKmBlock?.helperText = getString(R.string.wrong_input)
     }
 
     private fun addNewCar() {

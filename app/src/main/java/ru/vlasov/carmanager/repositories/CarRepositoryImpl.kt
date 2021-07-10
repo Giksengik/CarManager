@@ -1,6 +1,7 @@
 package ru.vlasov.carmanager.repositories
 
 import retrofit2.HttpException
+import ru.vlasov.carmanager.features.bottom_nav.cars.viewmodel.CarCreatingState
 import ru.vlasov.carmanager.features.bottom_nav.cars.viewmodel.CarDataRepresentationState
 import ru.vlasov.carmanager.models.Car
 import ru.vlasov.carmanager.network.json.main.RemoteDataSource
@@ -11,12 +12,16 @@ import javax.inject.Inject
 class CarRepositoryImpl @Inject constructor(private val remoteDataSource: RemoteDataSource) : CarRepository {
 
 
-    override suspend fun addCar(car: Car) {
-        try {
+    override suspend fun addCar(car: Car) : CarCreatingState {
+        return try {
             remoteDataSource.addCar(car)
+            CarCreatingState.Success
         }
         catch(e : Exception){
-            e.printStackTrace()
+            when(e){
+                is HttpException -> CarCreatingState.Error.RequestError
+                else -> CarCreatingState.Error.NetworkError
+            }
         }
     }
 

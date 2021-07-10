@@ -35,6 +35,18 @@ class MainProvider : AppCompatActivity() , NavigationProvider, CurrentFragmentHo
             .show()
     }
 
+    override fun showUserErrorDialog() {
+        fun showUserErrorDialog() {
+            android.app.AlertDialog.Builder(this)
+                    .setMessage(R.string.user_loading_error)
+                    .setPositiveButton(R.string.ok){
+                        dialog, _ -> dialog.dismiss()
+                    }
+                    .show()
+
+        }
+    }
+
     override fun getCurrentFragment(): Fragment? {
         val navHost = supportFragmentManager.findFragmentById(R.id.fragment_placeholder)
         return navHost?.childFragmentManager?.primaryNavigationFragment
