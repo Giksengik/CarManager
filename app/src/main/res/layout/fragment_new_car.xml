@@ -12,8 +12,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/newCarNameBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/editTextBlockStyle"
         android:hint="@string/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,8 +26,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/newCarYearOfIssueBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/editTextBlockStyle"
         android:hint="@string/year_of_issue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,9 +40,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/newCarMileageInKmBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/editTextBlockStyle"
         android:hint="@string/mileage_in_km"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/newCarYearOfIssueBlock">
@@ -57,8 +56,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/newCarColorBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/editTextBlockStyle"
         android:hint="@string/color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,8 +69,9 @@
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/newCarTaxPerYearBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/editTextBlockStyle"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/red"
         android:hint="@string/tax_per_year"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -156,8 +155,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/newCarCylinderVolumeInLitresBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/editTextBlockStyle"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/red"
         android:hint="@string/cylinder_volume_in_litres"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -171,8 +171,9 @@
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/newCarEnginePowerBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/editTextBlockStyle"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/red"
         android:hint="@string/engine_power"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -204,8 +205,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/newCarVINBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/editTextBlockStyle"
         android:hint="@string/VIN"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -219,8 +219,7 @@
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/newStateNumberBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/editTextBlockStyle"
         android:hint="@string/stateNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -235,8 +234,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/newCarDescriptionBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/editTextBlockStyle"
         android:hint="@string/description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -248,15 +246,5 @@
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/addCarButton"
-        android:layout_width="match_parent"
-
-        android:text="Add"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newCarDescriptionBlock"
-        android:layout_height="wrap_content" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

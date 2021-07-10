@@ -1,15 +1,18 @@
 package ru.vlasov.carmanager.features
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.vlasov.carmanager.NetworkUser
 import ru.vlasov.carmanager.R
-import ru.vlasov.carmanager.features.bottom_nav.MainFragment
+
 
 @AndroidEntryPoint
 class MainProvider : AppCompatActivity() , NavigationProvider, CurrentFragmentHolder, NetworkUser {
@@ -26,8 +29,7 @@ class MainProvider : AppCompatActivity() , NavigationProvider, CurrentFragmentHo
     override fun showNetworkErrorDialog() {
         AlertDialog.Builder(this)
             .setMessage(R.string.network_error_message)
-            .setPositiveButton(R.string.ok) {
-                dialog, _ ->
+            .setPositiveButton(R.string.ok) { dialog, _ ->
                 dialog.dismiss()
             }
             .show()
@@ -36,6 +38,12 @@ class MainProvider : AppCompatActivity() , NavigationProvider, CurrentFragmentHo
     override fun getCurrentFragment(): Fragment? {
         val navHost = supportFragmentManager.findFragmentById(R.id.fragment_placeholder)
         return navHost?.childFragmentManager?.primaryNavigationFragment
+    }
+
+    fun configureNavDrawer(toolbar : Toolbar){
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
+        val actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close)
+
     }
 
 }

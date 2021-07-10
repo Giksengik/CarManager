@@ -40,6 +40,20 @@
     <string name ="engine_power">Engine power</string>
     <string name ="engine_type">Type of engine</string>
     <string name="select_engine_type">Select type of engine</string>
+    <string name="wrong_input">Wrong input</string>
+    <string name="search">search</string>
+    <string name="content_description_search">tap to search</string>
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">Close drawer</string>
+    <string name="new_car">New car</string>
+    <string name="add">Add</string>
+    <string name="content_description_add">Add new entity</string>
+    <string name="back">Back</string>
+    <string name="content_description_back">Back</string>
+    <string name="done">Done</string>
+    <string name="content_description_done">Done</string>
+    <string name="confirm">Confirm</string>
+    <string name="content_description_confirm">Confirm</string>
 
     <!--Automobile body-->
     <string-array name="typesOfAutomobileBody">

@@ -39,6 +39,20 @@
     <string name ="engine_power">Мощность двигателя</string>
     <string name ="engine_type">Тип двигателя</string>
     <string name="select_engine_type">Выберите тип двигателя</string>
+    <string name="wrong_input">Неверный ввод</string>
+    <string name="search">Поиск</string>
+    <string name="content_description_search">Нажми для поиска</string>
+    <string name="drawer_open">Открыть меню</string>
+    <string name="drawer_close">Закрыть меню</string>
+    <string name="new_car">Новый автомобиль</string>
+    <string name="add">Добавить</string>
+    <string name="content_description_add">Добавить новую сущность</string>
+    <string name="back">Назад</string>
+    <string name="content_description_back">Назад</string>
+    <string name="done">Подтвердить</string>
+    <string name="content_description_done">Подтвердить</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="content_description_confirm">Подтвердить</string>
 
     <!--Кузов-->
     <string-array name="typesOfAutomobileBody">
