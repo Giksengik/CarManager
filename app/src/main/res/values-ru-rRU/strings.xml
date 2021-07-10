@@ -53,7 +53,10 @@
     <string name="content_description_done">Подтвердить</string>
     <string name="confirm">Подтвердить</string>
     <string name="content_description_confirm">Подтвердить</string>
-
+    <string name="km">км.</string>
+    <string name="mileage">Пробег</string>
+    <string name="litres">л</string>
+    <string name="horse_power">л.с.</string>
     <!--Кузов-->
     <string-array name="typesOfAutomobileBody">
         <item>Седан</item>

@@ -10,18 +10,6 @@
     android:layout_height="wrap_content"
     >
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/successCarCreatingAnim"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="50dp"
-        android:translationZ="1dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_rawRes="@raw/success" />
-
     <ProgressBar
         android:id="@+id/carCreatingProgressBar"
         style="?android:attr/progressBarStyle"

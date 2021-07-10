@@ -13,8 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import ru.vlasov.carmanager.NetworkUser
 import ru.vlasov.carmanager.R
 import ru.vlasov.carmanager.databinding.FragmentNewCarBinding
@@ -27,6 +25,7 @@ import ru.vlasov.carmanager.models.Car
 import ru.vlasov.carmanager.models.CarEngine
 import ru.vlasov.carmanager.utils.StringToDoubleConverter
 import kotlinx.coroutines.launch
+import ru.vlasov.carmanager.features.SuccessAnimationProvider
 
 @AndroidEntryPoint
 class FragmentNewCar : Fragment() {
@@ -77,10 +76,8 @@ class FragmentNewCar : Fragment() {
     }
 
     private fun onSuccess(){
-        binding?.carCreatingProgressBar?.visibility = View.GONE
-        binding?.successCarCreatingAnim?.visibility = View.VISIBLE
-        lifecycleScope.launch{
-            binding?.successCarCreatingAnim?.addAnimatorListener(object : Animator.AnimatorListener{
+        activity?.let{
+            (it as SuccessAnimationProvider).provideSuccessAnimation(object : Animator.AnimatorListener{
                 override fun onAnimationStart(animation: Animator?) {}
                 override fun onAnimationEnd(animation: Animator?) {
                     navigateToCarsList()
@@ -89,10 +86,7 @@ class FragmentNewCar : Fragment() {
                 override fun onAnimationCancel(animation: Animator?) {}
                 override fun onAnimationRepeat(animation: Animator?) {}
             })
-            binding?.successCarCreatingAnim?.playAnimation()
         }
-
-
     }
 
     private fun setLoading(){

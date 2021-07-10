@@ -112,7 +112,7 @@ class FragmentCars : Fragment() {
             }
             is CarDataRepresentationState.CarsLoaded ->{
                 setNotLoading()
-                listAdapter?.submitList(state.cars)
+                listAdapter?.setItems(state.cars)
             }
         }
     }

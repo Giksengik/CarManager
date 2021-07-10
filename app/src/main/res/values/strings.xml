@@ -54,7 +54,10 @@
     <string name="content_description_done">Done</string>
     <string name="confirm">Confirm</string>
     <string name="content_description_confirm">Confirm</string>
-
+    <string name="km">km.</string>
+    <string name="mileage">Mileage</string>
+    <string name="litres">l</string>
+    <string name="horse_power">h.p.</string>
     <!--Automobile body-->
     <string-array name="typesOfAutomobileBody">
         <item>Sedan</item>

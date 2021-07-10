@@ -13,11 +13,10 @@
             android:id="@+id/carInListImage"
             android:layout_width="100dp"
             android:layout_height="56dp"
-            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@drawable/ic_car" />
 
         <TextView
             android:id="@+id/carInListName"
@@ -40,6 +39,21 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+            app:srcCompat="@drawable/ic_expand_arrow" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/expandLayout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/propertyList"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="72dp"
+            android:nestedScrollingEnabled="false"
+             />
+    </FrameLayout>
+
 </androidx.cardview.widget.CardView>

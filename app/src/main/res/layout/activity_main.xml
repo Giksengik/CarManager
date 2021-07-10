@@ -19,6 +19,17 @@
         app:navGraph="@navigation/nav_host">
 
     </androidx.fragment.app.FragmentContainerView>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/successAnim"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="50dp"
+        android:translationZ="1dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_rawRes="@raw/success" />
     <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
