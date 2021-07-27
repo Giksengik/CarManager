@@ -14,15 +14,15 @@ import javax.inject.Inject
 @HiltViewModel
 class  NewCarViewModelImpl @Inject constructor(private val repository: CarRepository) : ViewModel(){
 
-    private val mutableViewState : MutableLiveData<CarCreatingState> = MutableLiveData()
+    private val _viewState : MutableLiveData<CarCreatingState> = MutableLiveData()
     val viewState : LiveData<CarCreatingState>
-    get() = mutableViewState
+    get() = _viewState
 
     fun addNewCar(car : Car){
-        mutableViewState.value = CarCreatingState.Loading
+        _viewState.value = CarCreatingState.Loading
         viewModelScope.launch(Dispatchers.Default) {
             val state = repository.addCar(car)
-            mutableViewState.postValue(state)
+            _viewState.postValue(state)
         }
     }
 }
