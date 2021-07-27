@@ -6,9 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import ru.vlasov.carmanager.NetworkUser
 import ru.vlasov.carmanager.R
 import ru.vlasov.carmanager.databinding.FragmentCarsBinding
@@ -54,8 +58,12 @@ class FragmentCars : Fragment() {
             adapter = listAdapter
         }
 
-        viewModel.userCars.observe(viewLifecycleOwner){
-            handleState(it)
+        lifecycleScope.launchWhenStarted {
+            viewModel.userCars
+                .onEach { state ->
+                    handleState(state)
+                }
+                .collect()
         }
 
         viewModel.getUserCars()
