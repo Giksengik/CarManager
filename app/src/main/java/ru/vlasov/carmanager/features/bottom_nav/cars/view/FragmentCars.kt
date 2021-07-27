@@ -81,7 +81,7 @@ class FragmentCars : Fragment() {
                 fragment ->
                 val toolbar = (fragment as ToolbarProvider).getToolbar()
                 (fragment as ToolbarProvider).setUpNavigationDrawer()
-                toolbar.title = ""
+                toolbar.title = " "
                 toolbar.findViewById<View>(R.id.search).visibility = View.VISIBLE
                 toolbar.findViewById<View>(R.id.addItem).visibility = View.VISIBLE
                 toolbar.findViewById<View>(R.id.confirm).visibility = View.GONE
