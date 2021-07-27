@@ -28,6 +28,13 @@ class LoginFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLoginBinding.inflate(LayoutInflater.from(context))
+
+
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding?.usernameLoginField?.setText(args.login)
         binding?.buttonToSignUp?.setOnClickListener{
             val action = LoginFragmentDirections.actionLoginFragmentToSignUpFragment2()
@@ -39,14 +46,12 @@ class LoginFragment : Fragment(){
         binding?.buttonLogin?.setOnClickListener{
             setLoading()
             viewModel.tryLogin(binding?.usernameLoginField?.text.toString(),
-            binding?.passwordLoginField?.text.toString())
+                    binding?.passwordLoginField?.text.toString())
         }
 
         viewModel.viewState.observe(viewLifecycleOwner){
             handleLoginResult(it)
         }
-
-        return binding?.root
     }
 
     private fun setLoading(){

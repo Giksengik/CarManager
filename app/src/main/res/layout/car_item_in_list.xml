@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,10 +33,11 @@
 
         <ImageButton
             android:id="@+id/carInListExpandButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="16dp"
             android:background="@null"
+            android:scaleType="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -44,16 +46,17 @@
 
     <FrameLayout
         android:id="@+id/expandLayout"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/propertyList"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="72dp"
-            android:nestedScrollingEnabled="false"
-             />
+            android:layout_marginBottom="10dp"
+            android:nestedScrollingEnabled="false" />
     </FrameLayout>
 
 </androidx.cardview.widget.CardView>

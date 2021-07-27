@@ -28,7 +28,13 @@ class SignUpFragment : Fragment() {
     ): View? {
         binding = FragmentSignUpBinding.inflate(LayoutInflater.from(context))
 
-       binding?.buttonToLogin?.setOnClickListener{
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding?.buttonToLogin?.setOnClickListener{
             val action = SignUpFragmentDirections.actionSignUpFragmentToLoginFragment()
             activity?.let{
                 (it as NavigationProvider).navigateByAction(action)
@@ -37,14 +43,13 @@ class SignUpFragment : Fragment() {
         binding?.buttonSignUp?.setOnClickListener{
             setLoading()
             viewModel.trySignUp(binding?.usernameSignUpField?.text.toString(),
-                binding?.passwordSignUpField?.text.toString(),
-                binding?.emailSignUpField?.text.toString())
+                    binding?.passwordSignUpField?.text.toString(),
+                    binding?.emailSignUpField?.text.toString())
         }
 
         viewModel.viewState.observe(viewLifecycleOwner){
             handleSignUpResult(it)
-        }
-        return binding?.root
+        } 
     }
 
     private fun handleSignUpResult(states : List<AuthState>) {

@@ -58,6 +58,8 @@
     <string name="mileage">Mileage</string>
     <string name="litres">l</string>
     <string name="horse_power">h.p.</string>
+    <string name="upload_image">Upload image</string>
+    <string name="car">Car</string>
     <!--Automobile body-->
     <string-array name="typesOfAutomobileBody">
         <item>Sedan</item>

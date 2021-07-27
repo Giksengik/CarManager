@@ -15,8 +15,11 @@ import ru.vlasov.carmanager.R
 import ru.vlasov.carmanager.models.Car
 
 
-class CarListAdapter() : RecyclerView.Adapter<CarListAdapter.ViewHolder>() {
+class CarListAdapter(private val listener : CarListener) : RecyclerView.Adapter<CarListAdapter.ViewHolder>() {
 
+    interface CarListener{
+        fun onCarClick(car : Car)
+    }
 
     class ExpandableCarItem(var isExpanded: Boolean, val car: Car)
 
@@ -27,7 +30,7 @@ class CarListAdapter() : RecyclerView.Adapter<CarListAdapter.ViewHolder>() {
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(items[position])
+        holder.bind(items[position], listener)
 
 
 
@@ -53,7 +56,7 @@ class CarListAdapter() : RecyclerView.Adapter<CarListAdapter.ViewHolder>() {
             name = itemView.findViewById(R.id.carInListName)
             expandButton = itemView.findViewById(R.id.carInListExpandButton)
         }
-        fun bind(expandableCarItem: ExpandableCarItem) {
+        fun bind(expandableCarItem: ExpandableCarItem, listener: CarListener) {
             image?.setImageDrawable(ResourcesCompat.getDrawable(itemView.context.resources, R.drawable.ic_car, null))
             name?.text = expandableCarItem.car.name
             propertyList?.setHasFixedSize(true)
@@ -62,6 +65,9 @@ class CarListAdapter() : RecyclerView.Adapter<CarListAdapter.ViewHolder>() {
                 expandableCarItem.isExpanded = show
             }
             showProperties(expandableCarItem.car)
+            itemView.setOnClickListener{
+                listener.onCarClick(expandableCarItem.car)
+            }
         }
 
         private fun toggleArrow(view: View?, isExpanded: Boolean): Boolean {

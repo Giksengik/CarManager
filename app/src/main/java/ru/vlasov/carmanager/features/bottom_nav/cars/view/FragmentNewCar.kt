@@ -40,12 +40,16 @@ class FragmentNewCar : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentNewCarBinding.inflate(inflater)
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         configureToolbar()
         defineLists()
         viewModel.viewState.observe(viewLifecycleOwner){
             handleState(it)
         }
-        return binding?.root
     }
 
     private fun handleState(state: CarCreatingState?) =

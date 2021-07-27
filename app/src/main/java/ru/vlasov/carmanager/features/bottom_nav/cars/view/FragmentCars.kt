@@ -1,14 +1,9 @@
 package ru.vlasov.carmanager.features.bottom_nav.cars.view
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import android.widget.Toolbar
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -18,13 +13,12 @@ import ru.vlasov.carmanager.NetworkUser
 import ru.vlasov.carmanager.R
 import ru.vlasov.carmanager.databinding.FragmentCarsBinding
 import ru.vlasov.carmanager.features.CurrentFragmentHolder
-import ru.vlasov.carmanager.features.MainProvider
 
-import ru.vlasov.carmanager.features.NavigationProvider
 import ru.vlasov.carmanager.features.bottom_nav.BottomNavigationHolder
 import ru.vlasov.carmanager.features.bottom_nav.ToolbarProvider
 import ru.vlasov.carmanager.features.bottom_nav.cars.viewmodel.CarDataRepresentationState
 import ru.vlasov.carmanager.features.bottom_nav.cars.viewmodel.CarsViewModelImpl
+import ru.vlasov.carmanager.models.Car
 
 @AndroidEntryPoint
 class FragmentCars : Fragment() {
@@ -39,8 +33,22 @@ class FragmentCars : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCarsBinding.inflate(inflater)
+
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         configureToolbar()
-        listAdapter = CarListAdapter()
+        configureParent()
+
+        listAdapter = CarListAdapter (object : CarListAdapter.CarListener {
+            override fun onCarClick(car: Car) {
+                navigateToCarProfile(car)
+            }
+        })
+
         binding?.carList?.apply{
             layoutManager = LinearLayoutManager(requireContext())
             adapter = listAdapter
@@ -52,7 +60,11 @@ class FragmentCars : Fragment() {
 
         viewModel.getUserCars()
 
-        return binding?.root
+    }
+
+    private fun navigateToCarProfile(car : Car) {
+        val action = FragmentCarsDirections.actionFragmentHomeToFragmentCarProfile()
+        findNavController().navigate(action)
     }
 
     private fun configureToolbar() {
@@ -79,11 +91,6 @@ class FragmentCars : Fragment() {
         }
     }
 
-
-    override fun onResume() {
-        super.onResume()
-        configureParent()
-    }
 
     private fun configureParent(){
         activity?.let{ activity ->
