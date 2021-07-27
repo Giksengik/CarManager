@@ -11,4 +11,6 @@ sealed class CarCreatingState {
     }
 
     object Loading : CarCreatingState()
+
+    object Waiting : CarCreatingState()
 }

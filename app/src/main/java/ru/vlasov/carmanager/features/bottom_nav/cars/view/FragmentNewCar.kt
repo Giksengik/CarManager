@@ -13,6 +13,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
 import ru.vlasov.carmanager.NetworkUser
 import ru.vlasov.carmanager.R
 import ru.vlasov.carmanager.databinding.FragmentNewCarBinding
@@ -47,8 +49,10 @@ class FragmentNewCar : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         configureToolbar()
         defineLists()
-        viewModel.viewState.observe(viewLifecycleOwner){
-            handleState(it)
+        lifecycleScope.launchWhenStarted {
+            viewModel.viewState.onEach { state ->
+                handleState(state)
+            }.collect()
         }
     }
 
