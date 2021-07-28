@@ -23,12 +23,12 @@ class  LoginViewModelImpl @Inject constructor(val repository: AuthRepository)
         get() = mutableViewState
 
         fun tryLogin(username: String?, password: String?){
-            mutableViewState.value = listOf(AuthState.Loading())
+            mutableViewState.value = listOf(AuthState.Loading)
             val stateList : MutableList<AuthState> = mutableListOf()
             if(!InputDataValidator.checkUsername(username))
-                stateList.add(AuthState.Fail.IncorrectUsername())
+                stateList.add(AuthState.Fail.IncorrectUsername)
             if(!InputDataValidator.checkPassword(password))
-                stateList.add(AuthState.Fail.IncorrectPassword())
+                stateList.add(AuthState.Fail.IncorrectPassword)
             if(stateList.size == 0){
                 viewModelScope.launch(Dispatchers.Default){
                     val resState = repository.login(username ?: "", password ?: "")

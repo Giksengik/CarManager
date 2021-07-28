@@ -8,7 +8,8 @@ import ru.vlasov.carmanager.network.json.main.request.CarEngineRequest
 import ru.vlasov.carmanager.network.json.main.request.CarRequest
 import javax.inject.Inject
 
-class MainRemoteDataSource @Inject constructor(@MainApi val api: JsonCarManagerApi, val userDataHolder: UserDataHolder) : RemoteDataSource {
+class MainRemoteDataSource @Inject constructor(
+    @MainApi val api: JsonCarManagerApi, val userDataHolder: UserDataHolder) : RemoteDataSource {
 
     override suspend fun addCar(car : Car){
         val carToInsert = CarRequest(
@@ -27,7 +28,7 @@ class MainRemoteDataSource @Inject constructor(@MainApi val api: JsonCarManagerA
                 transmissionType = car.transmissionType,
                 typeOfDriverUnit = car.typeOfDriveUnit,
                 steeringWheelLocation = car.steeringWheelLocation,
-                VIN = car.VIN,
+                vin = car.vin,
                 stateNumber = car.stateNumber,
                 description = car.description
         )
@@ -51,7 +52,7 @@ class MainRemoteDataSource @Inject constructor(@MainApi val api: JsonCarManagerA
                 transmissionType = car.transmissionType,
                 typeOfDriverUnit = car.typeOfDriveUnit,
                 steeringWheelLocation = car.steeringWheelLocation,
-                VIN = car.VIN,
+                vin = car.vin,
                 stateNumber = car.stateNumber,
                 description = car.description
         )
@@ -75,7 +76,7 @@ class MainRemoteDataSource @Inject constructor(@MainApi val api: JsonCarManagerA
             transmissionType = it.transmissionType,
             typeOfDriveUnit = it.typeOfDriverUnit,
             steeringWheelLocation = it.steeringWheelLocation,
-            VIN = it.VIN,
+            vin = it.vin,
             stateNumber = it.stateNumber,
             description = it.description)
         }

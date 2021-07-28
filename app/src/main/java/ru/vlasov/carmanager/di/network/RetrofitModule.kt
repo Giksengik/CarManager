@@ -21,9 +21,9 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RetrofitModule {
 
-    private val CONNECT_TIMEOUT = 10L
-    private val WRITE_TIMEOUT = 30L
-    private val READ_TIMEOUT = 10L
+    private const val  CONNECT_TIMEOUT = 10L
+    private const val WRITE_TIMEOUT = 30L
+    private const val READ_TIMEOUT = 10L
 
     @Provides
     @DebugBaseUrl
@@ -41,7 +41,8 @@ object RetrofitModule {
     @BearerTokenInterceptor
     fun provideBearerTokenInterceptor(userDataHolder : UserDataHolder): Interceptor = Interceptor { chain ->
         val newRequest = chain.request().newBuilder()
-                .addHeader("Authorization", "Bearer ${userDataHolder.dataHolder.getString(UserDataHolder.TOKEN_KEY, "") ?: ""}")
+                .addHeader("Authorization", "Bearer" +
+                        " ${userDataHolder.dataHolder.getString(UserDataHolder.TOKEN_KEY, "") ?: ""}")
                 .build()
         chain.proceed(newRequest)
     }
@@ -110,3 +111,4 @@ object RetrofitModule {
 
 
 }
+

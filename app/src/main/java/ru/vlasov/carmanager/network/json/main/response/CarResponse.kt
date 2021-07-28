@@ -16,6 +16,6 @@ class CarResponse (
         @SerialName("transmission_type") val transmissionType : String,
         @SerialName("type_of_driver_unit") val typeOfDriverUnit : String,
         @SerialName("steering_wheel_location") val steeringWheelLocation : String,
-        @SerialName("VIN") val VIN : String,
+        @SerialName("VIN") val vin : String,
         @SerialName("state_number") val stateNumber : String,
         @SerialName("description") val description : String)

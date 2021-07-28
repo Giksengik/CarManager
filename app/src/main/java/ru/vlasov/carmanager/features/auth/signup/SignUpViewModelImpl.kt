@@ -20,14 +20,14 @@ class SignUpViewModelImpl @Inject constructor(val repository: AuthRepository) : 
         get() = mutableViewState
 
     fun trySignUp(username: String?, password: String?, email : String?){
-        mutableViewState.value = listOf(AuthState.Loading())
+        mutableViewState.value = listOf(AuthState.Loading)
         val stateList : MutableList<AuthState> = mutableListOf()
         if(!InputDataValidator.checkUsername(username))
-            stateList.add(AuthState.Fail.IncorrectUsername())
+            stateList.add(AuthState.Fail.IncorrectUsername)
         if(!InputDataValidator.checkPassword(password))
-            stateList.add(AuthState.Fail.IncorrectPassword())
+            stateList.add(AuthState.Fail.IncorrectPassword)
         if(!InputDataValidator.checkEmail(email))
-            stateList.add(AuthState.Fail.IncorrectEmail())
+            stateList.add(AuthState.Fail.IncorrectEmail)
         if(stateList.size == 0){
             viewModelScope.launch(Dispatchers.Default){
                 val resState = repository.signUp(username ?: "", password ?: "", email ?: "")

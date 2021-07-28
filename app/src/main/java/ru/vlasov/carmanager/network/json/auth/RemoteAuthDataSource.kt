@@ -10,3 +10,4 @@ interface RemoteAuthDataSource {
 
     suspend fun signUp (signUpEntity: SignUpEntity) : MessageResponse
 }
+

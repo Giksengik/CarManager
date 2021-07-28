@@ -9,27 +9,28 @@ sealed class AuthState{
 
     class SuccessSignUp(val messageResponse: MessageResponse) : AuthState()
 
-    class Fail(){
-        class IncorrectPassword(): AuthState()
+    class Fail{
+        object IncorrectPassword : AuthState()
 
-        class IncorrectUsername(): AuthState()
+        object IncorrectUsername : AuthState()
 
-        class IncorrectEmail(): AuthState()
+        object IncorrectEmail : AuthState()
 
-        class NetworkError(): AuthState()
+        object NetworkError : AuthState()
 
-        class UserNotFound(): AuthState()
+        object UserNotFound : AuthState()
 
-        class UnexpectedState() : AuthState()
+        object UnexpectedState : AuthState()
 
         class SignUp{
-            class UsernameAlreadyExist() : AuthState()
+            object UsernameAlreadyExist : AuthState()
 
-            class EmailOccupied() : AuthState()
+            object EmailOccupied : AuthState()
 
-            class WrongInput() : AuthState()
+            object WrongInput : AuthState()
         }
     }
-    class Loading() : AuthState()
+
+    object Loading : AuthState()
 
 }

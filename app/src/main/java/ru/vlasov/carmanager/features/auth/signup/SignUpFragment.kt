@@ -49,7 +49,7 @@ class SignUpFragment : Fragment() {
 
         viewModel.viewState.observe(viewLifecycleOwner){
             handleSignUpResult(it)
-        } 
+        }
     }
 
     private fun handleSignUpResult(states : List<AuthState>) {

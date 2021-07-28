@@ -20,7 +20,8 @@ import ru.vlasov.carmanager.R
 
 
 @AndroidEntryPoint
-class MainProvider : AppCompatActivity() , NavigationProvider, CurrentFragmentHolder, NetworkUser, SuccessAnimationProvider {
+class MainProvider : AppCompatActivity() , NavigationProvider,
+    CurrentFragmentHolder, NetworkUser, SuccessAnimationProvider {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -59,8 +60,8 @@ class MainProvider : AppCompatActivity() , NavigationProvider, CurrentFragmentHo
 
     fun configureNavDrawer(toolbar : Toolbar){
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
-        val actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close)
-
+        ActionBarDrawerToggle(this, drawerLayout, toolbar,
+            R.string.drawer_open, R.string.drawer_close)
     }
 
     override fun provideSuccessAnimation(animatorListener: Animator.AnimatorListener) {

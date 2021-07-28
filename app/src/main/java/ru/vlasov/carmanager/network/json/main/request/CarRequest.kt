@@ -17,7 +17,7 @@ class CarRequest(
         @SerialName("transmission_type") val transmissionType : String,
         @SerialName("type_of_driver_unit") val typeOfDriverUnit : String,
         @SerialName("steering_wheel_location") val steeringWheelLocation : String,
-        @SerialName("VIN") val VIN: String,
+        @SerialName("VIN") val vin: String,
         @SerialName("stateNumber") val stateNumber : String,
         @SerialName("description") val description : String)
 

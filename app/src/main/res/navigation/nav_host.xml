@@ -28,6 +28,6 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="ru.vlasov.carmanager.features.bottom_nav.MainFragment"
+        android:name="ru.vlasov.carmanager.features.bottomnav.MainFragment"
         android:label="MainFragment" />
 </navigation>

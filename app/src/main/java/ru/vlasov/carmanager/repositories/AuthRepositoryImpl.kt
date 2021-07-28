@@ -21,16 +21,17 @@ class AuthRepositoryImpl @Inject constructor
                 putString(UserDataHolder.TOKEN_KEY, res.token ?: throw IllegalArgumentException("token not found"))
                 putString(UserDataHolder.EMAIL_KEY, res.email ?: throw IllegalArgumentException("email not found"))
                 putString(UserDataHolder.TYPE_KEY, res.type ?: throw IllegalArgumentException("token type not found"))
-                putString(UserDataHolder.USERNAME_KEY, res.username ?: throw IllegalArgumentException("username not found"))
+                putString(UserDataHolder.USERNAME_KEY,
+                    res.username ?: throw IllegalArgumentException("username not found"))
             }.apply()
             AuthState.SuccessLogin(res)
         } catch(e : Exception) {
             when(e){
-                is HttpException -> AuthState.Fail.UserNotFound()
+                is HttpException -> AuthState.Fail.UserNotFound
 
-                is IOException -> AuthState.Fail.NetworkError()
+                is IOException -> AuthState.Fail.NetworkError
 
-                else -> AuthState.Fail.UnexpectedState()
+                else -> AuthState.Fail.UnexpectedState
             }
         }
     }
@@ -45,23 +46,23 @@ class AuthRepositoryImpl @Inject constructor
             AuthState.SuccessSignUp(res)
         }catch(e : Exception) {
             when(e){
-                is IOException -> AuthState.Fail.NetworkError()
+                is IOException -> AuthState.Fail.NetworkError
                 is HttpException -> {
                     val message = e.response()?.errorBody()?.string()
                     val mesList = message?.split(" ")
                     if(mesList == null)
-                        AuthState.Fail.SignUp.WrongInput()
+                        AuthState.Fail.SignUp.WrongInput
                     if(mesList?.isEmpty() != false)
-                        AuthState.Fail.SignUp.WrongInput()
+                        AuthState.Fail.SignUp.WrongInput
                     else{
                         if(mesList[1].toLowerCase() == "user")
-                            AuthState.Fail.SignUp.UsernameAlreadyExist()
+                            AuthState.Fail.SignUp.UsernameAlreadyExist
                         else if(mesList[1].toLowerCase() == "email")
-                            AuthState.Fail.SignUp.EmailOccupied()
-                        else AuthState.Fail.SignUp.WrongInput()
+                            AuthState.Fail.SignUp.EmailOccupied
+                        else AuthState.Fail.SignUp.WrongInput
                     }
                 }
-                else -> AuthState.Fail.UnexpectedState()
+                else -> AuthState.Fail.UnexpectedState
             }
         }
     }

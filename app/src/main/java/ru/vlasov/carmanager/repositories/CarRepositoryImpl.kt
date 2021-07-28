@@ -1,8 +1,8 @@
 package ru.vlasov.carmanager.repositories
 
 import retrofit2.HttpException
-import ru.vlasov.carmanager.features.bottom_nav.cars.viewmodel.CarCreatingState
-import ru.vlasov.carmanager.features.bottom_nav.cars.viewmodel.CarDataRepresentationState
+import ru.vlasov.carmanager.features.bottomnav.cars.viewmodel.CarCreatingState
+import ru.vlasov.carmanager.features.bottomnav.cars.viewmodel.CarDataRepresentationState
 import ru.vlasov.carmanager.models.Car
 import ru.vlasov.carmanager.network.json.main.RemoteDataSource
 import java.io.IOException
@@ -37,10 +37,10 @@ class CarRepositoryImpl @Inject constructor(private val remoteDataSource: Remote
     override suspend fun getUserCars(): CarDataRepresentationState {
         return try {
             val res = remoteDataSource.getUserCars()
-            return CarDataRepresentationState.CarsLoaded(res)
+            CarDataRepresentationState.CarsLoaded(res)
         }catch (e : java.lang.Exception){
             when(e){
-                is HttpException -> return CarDataRepresentationState.Error.RequestError
+                is HttpException ->  CarDataRepresentationState.Error.RequestError
 
                 is IOException -> CarDataRepresentationState.Error.NetworkError
                 else -> {
@@ -53,3 +53,4 @@ class CarRepositoryImpl @Inject constructor(private val remoteDataSource: Remote
 
 
 }
+
